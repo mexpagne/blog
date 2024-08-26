@@ -1,0 +1,27 @@
+{% extends 'blogger/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card container w-50">
+    <div class="ml-9 align-content-center justify-content-center">
+        {% if profile.avatar %}
+            <p><strong>Avatar:</strong></p>
+            <img src="{{ profile.avatar.url }}" alt="Avatar" style="width: 150px; height: auto;">
+        {% endif %}
+        <h1>{{ profile.user.username }}'s Profile</h1>
+        
+        <div class="profile-details">
+            <p><strong>First Name:</strong> {{ profile.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
+            <p><strong>Email:</strong> {{ profile.email }}</p>
+            <p><strong>Country:</strong> {{ profile.country }}</p>
+            <p><strong>State:</strong> {{ profile.state }}</p>
+            <p><strong>City:</strong> {{ profile.city }}</p>
+            <p><strong>Occupation:</strong> {{ profile.occupation }}</p>
+            <p><strong>Gender:</strong> {{ profile.gender }}</p>
+            
+        </div>
+        <a class="btn btn-danger btn-rounded" href="{% url 'update_profile' %}"><i class="fa fa-write"></i>Update Your Profile</a>
+    </div>
+    
+</div>
+{% endblock content %}

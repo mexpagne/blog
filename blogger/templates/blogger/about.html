@@ -1,0 +1,228 @@
+{% extends 'blogger/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .why-choose-section .img3 {
+        position: absolute;
+        content: "";
+        width: 255px;
+        height: 217px;
+        background-image: url('');
+        background-repeat: no-repeat;
+        background-size: contain;
+        -webkit-transform: translate(-40%, -40%);
+        -ms-transform: translate(-40%, -40%);
+        transform: translate(-40%, -40%);
+        z-index: 12; }
+</style>
+<div class="card">
+   <!-- Start Why Choose Us Section -->
+    <div class="why-choose-section mb-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Why Choose Us</h2>
+                    <p>Welcome to Psychology at Your Tips, a captivating online sanctuary where the complexities of the mind unfold. Our mission? To empower, enlighten, and elevate your mental well-being. Here’s what awaits you:</p>
+
+                    <div class="row my-5">
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="{% static 'blogger/images/truck.svg' %}" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>Holistic Approach: </h3>
+                                <p>We blend science and soul, bridging the gap between research and real-life wisdom.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="{% static 'blogger/images/bag.svg' %}" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>Community Connection: </h3>
+                                <p>Join our vibrant community—share stories, ask questions, and find solace.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="{% static 'blogger/images/support.svg' %}" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>Curiosity Cultivated: </h3>
+                                <p>Curious minds thrive here. We encourage questions, exploration, and epiphanies.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="{% static 'blogger/images/return.svg' %}" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>Personalized Therapy:</h3>
+                                <p>Need a lifeline? Our seasoned therapists are here for you. Whether you’re navigating anxiety, relationship woes, or existential ponderings.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="img3" style="background-image: url('{% static 'blogger/images/dots-yellow.svg' %}');"></div>                        
+                    <div class="img-wrap">
+                        <img src="{% static 'blogger/img/kid-mom.jpg' %}" alt="Image" class="img-fluid">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Why Choose Us Section -->
+        <!-- Start Team Section -->
+    <div class="untree_co-section">
+        <div class="container">
+
+            <div class="row mb-2">
+                <div class="col-lg-5 mx-auto text-center">
+                    <h2 class="section-title">Our Team</h2>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Start Column 1 -->
+                <div class="col-12 col-md-6 col-lg-4 mb-0 mb-md-0">
+                    <div style="padding-left:12px;padding-top:12px;padding-right:12px;margin-left:10vw;" class="card w-100 text-center">
+                        <img style="border-radius:10px;height:250px" src="{% static 'blogger/images/Queen1.jpg' %}" class="img-fluid mb-2">
+                        <h3 clas><a href="{% url 'blog' %}"><span class="">Queendaline</span> &nbsp;C.N</a></h3>
+                        <span class="d-block position mb-4">CEO, Founder, PAY-T.</span>
+                        <p></p>
+                        <blockquote>
+                            Specialisation: <strong>Clinical Psychology M.sc</strong>
+                        </blockquote>
+                        <hr>                            
+                        <div class="blog__details__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a style="margin-left:1vw;" href="#"><i class="fa fa-twitter"></i></a>
+                            <a style="margin-left:1vw;" href="#"><i class="fa fa-google-plus"></i></a>
+                            <a style="margin-left:1vw;" href="#"><i class="fa fa-linkedin"></i></a>
+                            <a style="margin-left:1vw;" href="#"><i class="fa fa-envelope"></i></a>
+                        </div>
+                        <p class="mb-2 text-center">ɵ ɵ ɵ</p>
+                    </div>
+                    
+                </div> 
+                <!-- End Column 1 -->
+                 <!-- Start Column 2 -->
+                <div class="col-12 col-md-6 col-lg-4 mb-0 mb-md-0">
+                    <div style="padding-left:12px;padding-top:12px;padding-right:12px;margin-left:20vw;" class="card w-100 text-center">
+                        <img style="border-radius:10px;height:250px" src="{% static '/images/logo4.PNG' %}" class="img-fluid mb-2">
+                        <h3 clas><a href="{% url 'blog' %}"><span class="">Lone_Wolf</span> &nbsp;MarshalCodes</a></h3>
+                        <span class="d-block position mb-4">Developer, PAY-T.</span>
+                        <p></p>
+                        <blockquote>
+                            Specialisation: <strong>Python, HTMX, TypeScript</strong>
+                        </blockquote>
+                        <hr>                            
+                        <div class="blog__details__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a style="margin-left:1vw;" href="#"><i class="fa fa-twitter"></i></a>
+                            <a style="margin-left:1vw;" href="#"><i class="fa fa-google-plus"></i></a>
+                            <a style="margin-left:1vw;" href="#"><i class="fa fa-linkedin"></i></a>
+                            <a style="margin-left:1vw;" href="#"><i class="fa fa-envelope"></i></a>
+                        </div>
+                        <p class="mb-2 text-center">ɵ ɵ ɵ</p>
+                    </div>
+                    
+                </div> 
+                <!-- End Column 2 -->
+            </div> 
+        </div>
+    </div>            
+    <!-- Start Testimonial Slider -->
+    
+    <div class="testimonial-section before-footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 mx-auto text-center">
+                    <h2 class="section-title">Testimonials</h2>
+                </div>
+            </div>
+            
+    <!-- Start Testimonial Slider -->
+    <div id="carouselExampleDark" data-bs-ride="carousel" class="carousel carousel-dark slide mb-10">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6" aria-label="Slide 7"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="5000">
+            
+            <div class="d-block w-100">
+                <div class="col-lg-8 mx-auto mb-5">
+
+                    <div class="testimonial-block text-center">
+                        <blockquote class="mb-3">
+                            <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
+                        </blockquote>
+
+                        <div class="author-info">
+                            <div class="author-pic">
+                                <img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
+                            </div>
+                            <h3 class="font-weight-bold">Maria Jones</h3>
+                            <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            </div>
+            {% for testimony in testimonials %}
+            <div class="carousel-item" data-bs-interval="2000">
+            <div class="d-block w-100">
+                <div class="col-lg-8 mx-auto mb-3">
+
+                    <div class="testimonial-block text-center">
+                        <blockquote class="mb-3">
+                            <p>&ldquo;{{ testimony.testimony|safe }}&rdquo;</p>
+                        </blockquote>
+
+                        <div class="author-info">
+                            <div class="author-pic">
+                                <img src="{{ testimony.photo.url }}" alt="testifier pic" class="img-fluid">
+                            </div>
+                            <h3 class="font-weight-bold">{{ testimony.testifier }}</h3>
+                            <span class="position d-block mb-1">{{ testimony.occupation }}</span>
+                            <span class="position d-block mb-3 text-muted">{{ testimony.added_on }}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="text-center">
+        <a href="{% url 'testify' %}" class="btn btn-rounded btn-danger mb-5"><i class="fa fa-pencil-square-o"></i>&nbsp; Leave a Testimony</a>
+    </div>
+            
+</div>
+{% endblock content %}

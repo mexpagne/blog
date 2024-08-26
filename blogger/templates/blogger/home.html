@@ -1,0 +1,198 @@
+{% extends "blogger/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <!-- Section: Intro -->
+    <section class="">
+
+        <style>
+            #intro-lower {
+                margin-top: -240px;
+            }
+
+            @media (max-width: 767.98px) {
+             #intro-lower {
+                    margin-top: -270px;
+                }
+            }
+
+            #intro-upper {
+                height: 500px;
+                background-color: hsl(0, 0%, 94%);
+            }
+        
+            @media (max-width: 767.98px) {
+                #intro-upper {
+                height: 500px;
+                }
+            }
+        </style>
+    
+        <div id="intro-upper" class="pb-5">
+            <div class="container pt-4">
+
+                <h1 class="display-4 pt-5 fw-bold ls-tight text-danger">Psychology At Your Tips (PAY-T)</h1>
+                <p class="text-dark pb-5"> <img src="{% static 'blogger/images/Queen1.jpg' %}"
+                    class="rounded-circle me-2" height="35" alt="photo" loading="lazy" />
+                  <span> by</span>
+                  <a href="" class="text-reset"><u>Queendaline C.N</u></a>
+                </p>
+          
+            </div>         
+    
+        </div>
+        <div id="intro-lower">
+            <div class="container">
+                <div class="row g-0 align-items-center">
+                    <div class="col-xl-7 mb-4 mb-xl-0">
+                        <img src="{% static 'blogger/img/climber-on-cliff.jpg' %}" class="w-100 rounded-6" alt="Backpacker" />
+                    </div>
+                    <div class="col-xl-5 ms-0 ms-xl-n5">
+                        <div class="card rounded-6 shadow-5">
+                            <div class="card-body px-4 p-4 p-md-5 p-lg-4 p-xl-5">
+                                <h4 class="mb-4">
+                                    Psychology At Your Tips Blog &nbsp;<i class="fa fa-book"></i>
+                                </h4>
+                                <p class="text-muted mb-4">
+                                    Welcome to Psychology at Your Fingertips, 
+                                    a captivating online sanctuary where the complexities of the mind unfold. 
+                                    Our mission? To empower, enlighten, and elevate your mental well-being. 
+                                    Lots of Goodies await you:
+                                </p>
+                                <button data-mdb-ripple-init class="btn btn-danger btn-rounded">
+                                    <a class="text-white" href="{% url 'blog' %}">
+                                        Start here <i class="fas fa-angle-right ms-1"></i>
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+    <!-- Section: Intro -->
+</div>
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main>
+<div class="container">
+
+    <!-- Section: Posts -->
+    <section class="text-center mb-7 mt-5">
+
+      <h3 class="fw-bold mb-7 text-center"><span style="color:rgba(245,5,5,0.5);">-----------</span>&nbsp;&nbsp;Classic Quotes&nbsp;&nbsp;<span style="color:rgba(245,5,5,0.5);">-----------</span></h3>
+
+        <div class="row gx-lg-5">
+            <!-- Column -->
+            {% if quotes %}
+            {% for quote in quotes %}
+            <div class="col-lg-4 col-md-6 mb-7">                        
+                <div class="card rounded-6">
+                    <div class="bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6 mt-n3"
+                        data-mdb-ripple-init data-mdb-ripple-color="light">
+                        <img style="height:33vh;" src="{{ quote.quote_pic.url }}" class="w-100">
+            
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                        
+                    </div>                    
+                    <p style="margin-top:0px;padding-top:0px;margin-bottom:0px;padding-bottom:0px;" class="text-muted">
+                        {{ quote.content|safe|slice:":200" }}
+                    </p>
+                    <a href="{% url 'quote_detail' quote.id %}" style="align-self:center;justify-self:center;" class="w-50 blog__btn btn btn-rounded mb-1">VIEW MORE <span class="">↗️</span></a>
+                    <h5 style="margin-top:0px;padding-top:0px;margin-bottom:0px;padding-bottom:0px;" class="card-title">{{ quote.author }}...</h5>
+                    <div style="margin-top:2px;padding-top:0px;margin-bottom:2px;padding-bottom:0px;" class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> {{ quote.year }}</li>
+                        </ul>
+                    </div>
+                              
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-lg-10 mb-7">
+                <strong>There are no published Quotes yet! check back later</strong>
+            </div>
+            {% endif %}
+            <!-- Column -->
+            {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.num|add:'-3' and num < page_obj.num|add:'3' %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+            {% endif %}       
+            
+        </div>
+    
+      <a data-mdb-ripple-init class="btn btn-danger btn-rounded" href="#" role="button">Get more Quotes</a>
+    
+
+    </section>
+    <!-- Section: Posts -->
+    <!-- Section: About author -->
+    <section class="mb-10">
+        <div class="container">
+        <div class="row gx-0 align-items-center">
+    
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px); z-index: 1;"
+                    class="card rounded-7 me-lg-n5">
+                    <div class="card-body p-lg-5">
+                        <h2 class="fw-bold">
+                            <span class="text-danger">Queendaline Chinonyelum Nnamchi</span>
+                        </h2>
+                        <p class="fw-bold"><em>“Unleash your inner Adventurer”</em></p>
+
+                        <p class="text-muted mb-4">
+                            Welcome to Psychology at Your Tips, 
+                            an online hub dedicated to empowering and enhancing your mental well-being 
+                            through a blend of insightful content and personalized support. 
+                            
+                        </p>
+                        <p class="text-muted">
+                            Here, you'll find thought-provoking blog posts that explore human behavior, 
+                            engaging videos on topics like emotional intelligence and mindfulness, 
+                            and personalized therapy sessions with experienced therapists 
+                            to help you navigate life's challenges. 
+                            With a holistic approach that combines scientific research and real-life wisdom, 
+                            a vibrant community for connection, and a space that nurtures curiosity, 
+                            this platform is your gateway to unraveling the complexities of the mind 
+                            and discovering inspiration along the way.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <img src="{% static "blogger/img/motivate.jpg" %}" class="w-100" alt="Author image" style="border-radius: 53% 47% 52% 48% / 36% 41% 59% 64%;"/>
+            </div>
+    
+        </div>
+        </div>
+    </section>
+    <!-- Section: About author -->
+
+</div>
+
+</main>
+<!--Main layout-->
+{% endblock content %}

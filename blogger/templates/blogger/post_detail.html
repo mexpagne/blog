@@ -1,0 +1,216 @@
+{% extends "blogger/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    /* General Comment Styles */
+    .comment, .reply, .to-reply {
+        border-left: 2px solid #ddd;
+        padding-left: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+    }
+
+    /* Reply to Reply */
+    .to-reply {
+        border-left: 2px solid #bbb;
+        padding-left: 20px;
+    }
+
+    /* Buttons */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    /* Adjust form textareas */
+    .form-control {
+        margin-bottom: 10px;
+    }
+
+    body {
+         --text-color: #222;
+         --bkg-color: #fff;
+     }
+    body.dark-theme {
+        --text-color: #eee;
+        --bkg-color: #121212;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+    /* defaults to dark theme */
+    body {
+        --text-color: #eee;
+        --bkg-color: #121212;
+    }
+    body.light-theme {
+        --text-color: #222;
+        --bkg-color: #fff;
+    }
+    }
+    
+    * {
+       font-family: Arial, Helvetica, sans-serif;
+    }
+     
+    .card {
+      background: var(--bkg-color);
+    }
+    
+    h1,
+    h6,
+    p {
+       color: var(--text-color);
+    }
+
+    p > a > u,
+    p > span,
+    p > small {
+        color: var(--text-color);
+    }
+
+    .blog__details__author__text > h6,
+    .blog__details__author__text > span,
+    .col-lg-6 > .blog__details__widget > ul > li > span,
+    .col-lg-6 > .blog__details__widget > .blog__details__social > a > i {
+        color: var(--text-color);
+    }
+    
+</style>
+<section> 
+        
+    <div style="display:flex;align-items:center;justify-content:center;">
+            
+        <div class="card col-lg-10 col-md-12 mt-n2 mx-6" style="padding-left:15px;padding-right:10px;">
+            <div style="margin-left:60vw;" class="mt-3"><button data-mdb-ripple-init class="btn-toggle">Switch Mode&nbsp;<i class="fa fa-toggle-on"></i></button></div>
+            <div class="blog__details__text" style="margin-left:15px;">
+                <h1 class="display-4 pt-2 fw-bold ls-tight text-primary">{{ blogpost.title }} </h1>
+                <div style="display:flex;">
+                    <img src="{{ blogpost.author_avatar.url }}"
+                    class="rounded-circle me-2 pt-0" height="35" alt="" loading="lazy" />
+                    <p class="text-dark pb-0"> 
+                        <span> by:</span>
+                        <a style="text-decoration:none;" class="text-reset"><u>Raymond Dart</u></a>&nbsp;&nbsp;|&nbsp;
+                        <small style="color:grey;"><i class="fa fa-clock"></i>&nbsp;{{ blogpost.get_read_time }}-Minute Read</small>
+                    </p>
+                </div>
+                <div style="height:50vh;width:40vw;margin-left:100px">
+                    <img class="bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6 card-image" style="height:50vh;width:40vw;margin-left:100px" src="{{ blogpost.image.url }}" alt="Post PHOTO">
+                </div>
+                <p>
+                    {{ blogpost.article|safe }}
+                </p>
+                
+            </div>
+            <div class="blog__details__content">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="blog__details__author">
+                            <div class="blog__details__author__pic">
+                                <img src="{{ blogpost.author_avatar.url }}" alt="AUTHOR">
+                            </div>
+                            <div class="blog__details__author__text">
+                                <h6>{{ blogpost.author }}</h6>
+                                <span>Admin</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="blog__details__widget">
+                            <ul>
+                                <li><span>Categories:</span>&nbsp; <span style="color:blue;">{{ blogpost.category }}</span></li>
+                                <li><span>Tags:</span>{% for tag in blogpost.tags.all %} {{ tag.name }}, {% endfor %}</li>
+                            </ul>
+                            <div style="margin-left:2vw;" class="blog__details__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-envelope"></i></a>
+                            </div>
+                            <p style="margin-left:2vw;">This Article Was Published on <strong>{{ blogpost.posted_on }}</strong></p>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-warning mb-2">Comment Section</a>
+                    <!-- Comment Form -->
+                    <form action="{% url 'add_comment' post_id=blogpost.id %}" method="post">
+                        {% csrf_token %}
+                        {{ form.media }}
+                        <textarea name="content" rows="2" class="form-control" placeholder="Enjoyed the post? Leave a comment💬..."></textarea>
+                        <button type="submit" class="btn btn-primary btn-rounded mt-1">Post Comment</button>
+                    </form>
+                    <!-- Comments Section -->
+                    <div class="comments-section mt-2">
+                        {% for comment in blogpost.comments.all %}
+                            <div class="comment">
+                                <p><strong><i class="fa fa-user-circle"></i>&nbsp;{{ comment.user.username }}:</strong> {{ comment.content|safe }}</p>
+                                <div class="replies mt-1">
+                                    {% for reply in comment.replies.all %}
+                                        <div class="reply">
+                                            <p><strong><i class="fa fa-user-circle"></i>&nbsp;{{ reply.user.username }}:</strong> {{ reply.reply|safe }}</p>
+                                            <!-- ToReplies -->
+                                            <div class="to-replies mt-1">
+                                                {% for to_reply in reply.replies.all %}
+                                                    <div class="to-reply">
+                                                        <p><strong><i class="fa fa-user-circle"></i>&nbsp;{{ to_reply.user.username }}:</strong> {{ to_reply.reply_content|safe }}</p>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <!-- Reply Form -->
+                                            <form action="{% url 'add_to_reply' reply_id=reply.id %}" method="post">
+                                                {% csrf_token %}
+                                                {{ form.media }}
+                                                <textarea name="reply_content" rows="1" class="form-control" placeholder="Add to this comment thread 🧵..."></textarea>
+                                                <button type="submit" class="btn btn-secondary btn-rounded mt-2">Reply</button>
+                                            </form>
+                                        </div>
+                                    {% endfor %}
+                                    <!-- Reply Form -->
+                                    <form action="{% url 'add_reply' comment_id=comment.id %}" method="post">
+                                        {% csrf_token %}
+                                        {{ form.media }}
+                                        <textarea name="reply" rows="1" class="form-control" placeholder="Reply to this comment..."></textarea>
+                                        <button type="submit" class="btn btn-secondary btn-rounded mt-2">Post Reply</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+    
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    const btn = document.querySelector(".btn-toggle");
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme == "dark") {
+    document.body.classList.toggle("dark-theme");
+    } else if (currentTheme == "light") {
+    document.body.classList.toggle("light-theme");
+    }
+
+    btn.addEventListener("click", function () {
+    if (prefersDarkScheme.matches) {
+        document.body.classList.toggle("light-theme");
+        var theme = document.body.classList.contains("light-theme")
+        ? "light"
+        : "dark";
+    } else {
+        document.body.classList.toggle("dark-theme");
+        var theme = document.body.classList.contains("dark-theme")
+        ? "dark"
+        : "light";
+    }
+    localStorage.setItem("theme", theme);
+    });    
+</script>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'blogger/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container card w-50">
+    <form method="POST" class="ml-9align-content-center justify-content-center" enctype="Multipart/form-data">
+        <h2 class="fw-bold text-danger mt-3 mb-3">UPDATE YOUR PROFILE&nbsp;<i class="fa fa-pencil-square-o"></i></h2>
+        <div class="form-outline mb-4 col-lg-8 col-md-8 col-sm-8">
+            {% csrf_token %}
+            {{ user_form|crispy }} </br>
+            {{ profile_form|crispy }}
+            <!-- Submit button -->
+          <button style="width: fit-content;" type="submit" class="btn btn-primary btn-sm btn-rounded btn-block mb-2 mt-3"><i class="fa fa-edit"></i>&nbsp;&nbsp;Update Profile</button>          
+        </div>
+    </form>
+    </br>
+    <a style="width: fit-content;" href="#"class="btn btn-secondary btn-sm btn-rounded btn-block mb-4">Change Your Password</a>          
+</div>
+
+
+{% endblock %}

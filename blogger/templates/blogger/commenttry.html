@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Comments</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+  </head>
+  <body>
+    <style>
+        body {
+            --text-color: #222;
+            --bkg-color: #fff;
+          }
+          body.dark-theme {
+            --text-color: #eee;
+            --bkg-color: #121212;
+          }
+          
+          @media (prefers-color-scheme: dark) {
+            /* defaults to dark theme */
+            body {
+              --text-color: #eee;
+              --bkg-color: #121212;
+            }
+            body.light-theme {
+              --text-color: #222;
+              --bkg-color: #fff;
+            }
+          }
+          
+          * {
+            font-family: Arial, Helvetica, sans-serif;
+          }
+          
+          body {
+            background: var(--bkg-color);
+          }
+          
+          h1,
+          p {
+            color: var(--text-color);
+          }
+        .comment {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .comment-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .comment-voting button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .comment-info {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .replies {
+            margin-left: 20px; /* Indent nested replies */
+        }
+
+    </style>
+        <body>
+            <a class="btn btn-primary btn-toggle btn-rounded" href="#"><i class="fa fa-toggle"></i>Toggle</a>
+            <div class="comment">
+                <div class="comment-heading">
+                    <!-- Comment voting buttons -->
+                    <div class="comment-voting">
+                        <button type="button">Vote up</button>
+                        <button type="button">Vote down</button>
+                    </div>
+                    <!-- Comment info (author, votes, timestamp) -->
+                    <div class="comment-info">
+                        <a href="#" class="comment-author">{{ author }}</a>
+                        <!-- Other comment details (votes, timestamp, etc.) -->
+                    </div>
+                </div>
+                <!-- Comment content -->
+                <p>{{ comment_content }}</p>
+                <!-- Nested replies (if any) -->
+                <div class="replies">
+                    <!-- Nested comment structure -->
+                    <!-- ... -->
+                </div>
+            </div>
+        </body>
+    <script>
+        const btn = document.querySelector(".btn-toggle");
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme == "dark") {
+        document.body.classList.toggle("dark-theme");
+        } else if (currentTheme == "light") {
+        document.body.classList.toggle("light-theme");
+        }
+
+        btn.addEventListener("click", function () {
+        if (prefersDarkScheme.matches) {
+            document.body.classList.toggle("light-theme");
+            var theme = document.body.classList.contains("light-theme")
+            ? "light"
+            : "dark";
+        } else {
+            document.body.classList.toggle("dark-theme");
+            var theme = document.body.classList.contains("dark-theme")
+            ? "dark"
+            : "light";
+        }
+        localStorage.setItem("theme", theme);
+        });
+    </script>
+  </body>
+</html>
